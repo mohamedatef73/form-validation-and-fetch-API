@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import FormInputs from './form'
 import { Link } from 'react-router-dom'
 
@@ -14,6 +14,12 @@ const SignUpForm = ((props) =>{
   const [passwordConfirmation,setPasswordConfirmation] = useState('')
   const [passwordConfirmationErr,setPasswordConfirmationErr] = useState('')
 
+  useEffect(()=>{
+    setEmailErr(props.backendError)
+
+  },[props.backendError])
+
+
  function validation(){ 
   const name = isName()
     const email = isEmail()
@@ -23,11 +29,11 @@ const SignUpForm = ((props) =>{
     if(name & email & password & passwordConfirmation){
       let data = {
         name,
-        email:email,
-        password:password,
-        passwordConfirmation:passwordConfirmation
+        email,
+        password,
+        passwordConfirmation
       }
-      props.mohamed(data)
+      props.authentication(data)
     }
   }
 
