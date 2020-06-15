@@ -14,23 +14,17 @@ const SignUpPage =(() =>{
 
         let usersData = users ? JSON.parse(users) : []
 
-        if(usersData.length){
 
-            usersData.forEach(user => {
-                if(user.email === data.email){
-                    setError('this email already taken')
-                }else{
-                    usersData = [...usersData, data]
-                }
-            })
+        let emailTaken = usersData.find(user => user.email === data.email)
+        if(emailTaken !== undefined){
+            setError('this email is already taken')
         }else{
-            usersData = [...usersData, data]
-        }
+            usersData = [...usersData,data]
+            setError('')
 
-        localStorage.setItem('accounts', JSON.stringify(usersData))
-        console.log(data)
+            localStorage.setItem('accounts', JSON.stringify(usersData))
+        }    
     }
-    
     return(
         <div className='container'>
             <SignUpForm authentication={submit} backendError={error} />

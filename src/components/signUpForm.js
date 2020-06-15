@@ -17,16 +17,16 @@ const SignUpForm = ((props) =>{
   useEffect(()=>{
     setEmailErr(props.backendError)
 
-  },[props.backendError])
+  },[props.backendError,emailErr])
 
 
  function validation(){ 
-  const name = isName()
-    const email = isEmail()
-    const password = isPassword()
-    const passwordConfirmation = isPasswordConfirmation()
+  const nameValid = isName()
+    const emailValid = isEmail()
+    const passwordValid = isPassword()
+    const passwordConfirmationValid = isPasswordConfirmation()
 
-    if(name & email & password & passwordConfirmation){
+    if(nameValid & emailValid & passwordValid & passwordConfirmationValid){
       let data = {
         name,
         email,
